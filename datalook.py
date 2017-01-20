@@ -1,14 +1,13 @@
 
 # coding: utf-8
 import sys
-import glob
 import numpy
 import matplotlib.pyplot
 
 #filenames = sorted(glob.glob('data/weather*.csv'))
 
 
-def analyse (filename, outfile=None):
+def analyse(filename, outfile=None):
     """This is a function that does analyse the data and does a plot of Graphs"""
     
     data = numpy.loadtxt(fname=filename, delimiter=',')
@@ -37,7 +36,7 @@ def analyse (filename, outfile=None):
        matplotlib.pyplot.savefig(outfile)
 
 
-def detect_problems (filename):
+def detect_problems(filename):
  
     """Some of our temperature files have problems, check for these.
     
@@ -49,18 +48,18 @@ def detect_problems (filename):
     
     data = numpy.loadtxt(fname=filename, delimiter=',')
     
-    if numpy.max (data, axis=0) [0] == 0 and numpy.max (data, axis=0)[20] == 20:
+    if numpy.max(data, axis=0) [0] == 0 and numpy.max (data, axis=0)[20] == 20:
         print ("Suspicious looking maxima")
     elif numpy.sum(numpy.min(data, axis=0)) == 0:
-        print ("Minima add up to zero")
+        print("Minima add up to zero")
     else:
-        print ("Data looks OK")
+        print("Data looks OK")
 
-print ("Running", sys.argv[0])
+print("Running", sys.argv[0])
 
 if __name__=="__main__":
 
-    print (sys.argv[1])
+    print(sys.argv[1])
     analyse (sys.argv[1], outfile=sys.argv[2])
     detect_problems (sys.argv[1])
 
